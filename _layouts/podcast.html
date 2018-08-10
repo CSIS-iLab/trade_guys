@@ -17,9 +17,11 @@ layout: default
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    {{ page.soundcloud_url }}
+
+    {%- include audio-player.html -%}
+
     {{ content }}
-    
+
   </div>
 
   {%- if site.disqus.shortname -%}
