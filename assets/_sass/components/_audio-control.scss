@@ -1,25 +1,41 @@
-.uniF1B9---elusiveicons {
-	width: 20px;
-	height: 20px;
-	font-family: elusiveicons;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: $black;
+.status {
+  width: 53px;
+  height: 27px;
+  font-family: Inconsolata;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.3px;
+  color: #000000;
+  color: var(--black);
+  margin: 0 30px 0 10px;
+  cursor: pointer;
 }
 
-.uniF1C7---elusiveicons {
-	width: 20px;
-	height: 20px;
-	font-family: elusiveicons;
-	font-size: 20px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: $black;
+.Rectangle-4 {
+  width: 501px;
+  height: 4px;
+  position: relative;
+  background-color: #b3b3b3;
+}
+
+.Rectangle-4 i.progress {
+  height: 4px;
+  position: absolute;
+  background-color: black;
+}
+
+.player > span {
+  display: inline-block;
+}
+
+.length {
+  margin: 0 0 0 20px;
+}
+
+.player i,
+.Rectangle-4 {
+  cursor: pointer;
 }

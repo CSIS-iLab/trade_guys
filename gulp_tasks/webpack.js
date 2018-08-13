@@ -24,9 +24,17 @@ gulp.task('webpack', function() {
       .src(entry)
       // .pipe(plumber())
       .pipe(named())
-      .pipe(babel())
+      .pipe(
+        babel({
+          presets: ['env']
+        })
+      )
+      .pipe(
+        uglify().on('error', function(e) {
+          console.log(e)
+        })
+      )
       .pipe(webpackStream(config.webpack, webpack))
-      // .pipe(uglify())
       .pipe(gulp.dest(config.assets + '/' + config.js.dest))
   )
 })

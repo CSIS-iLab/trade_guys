@@ -1,2 +1,2 @@
-import client from './soundcloud'
-console.log(client())
+import player from './soundcloud'
+player()

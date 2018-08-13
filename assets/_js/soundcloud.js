@@ -1,75 +1,71 @@
-// import * as SoundCloudAudio from 'soundcloud-audio'
-//
-// export default SoundCloudAudio
-
 import * as SoundCloudAudio from 'soundcloud-audio'
 
-export function player() {
-  let currentPlayer, scPlayer
+export default function player() {
+  let players = []
+
   const init = (URL, lengthDisplay) => {
-    scPlayer = new SoundCloudAudio(`{{site.soundcloud_client_id}}`)
-
+    let scPlayer = new SoundCloudAudio('e1b9039f824fdaf6ec1fc594037c1ac7')
     scPlayer.resolve(URL, function(track) {
-      console.log(track.duration, lengthDisplay)
+      let minutes = millisToMinutesAndSeconds(track.duration)
+      lengthDisplay.textContent = minutes
     })
+    players.push(scPlayer)
   }
 
-  // const millisToMinutesAndSeconds = millis => {
-  //   const minutes = Math.floor(millis / 60000)
-  //   const seconds = ((millis % 60000) / 1000).toFixed(0)
-  //   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-  // }
-
-  const progressBar = progressDisplay => {
-    if (currentPlayer.isPlaying()) {
-      let progress =
-        (currentPlayer.currentTime() / currentPlayer.getDuration()) * 100
-      console.log(progress)
-      progressDisplay.style.width = `${progress}%`
-    }
+  const millisToMinutesAndSeconds = millis => {
+    const minutes = Math.floor(millis / 60000)
+    const seconds = ((millis % 60000) / 1000).toFixed(0)
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
   }
 
-  const setCurrent = (URL, lengthDisplay, progressDisplay) => {
-    scPlayer.initialize({
-      client_id: `{{site.soundcloud_client_id}}`
-    })
+  const progressBar = (progressDisplay, i) => {
+    setInterval(() => {
+      if (players[i].playing) {
+        let progressPercent =
+          (players[i].audio.currentTime / players[i].audio.duration) * 100
+        progressDisplay.style.width = `${progressPercent}%`
+      }
+    }, 300)
+  }
 
-    scPlayer.resolve(URL).then(json => {
-      let trackPath = `tracks/${json.id}`
-      scPlayer.stream(trackPath).then(player => {
-        currentPlayer = player
-        player.play()
-        progressBar(progressDisplay)
-      })
+  const addSeeker = (player, i) => {
+    player.querySelector('.Rectangle-4').addEventListener('click', e => {
+      if (e.target.classList.contains('Rectangle-4')) {
+        let progressBarWidth = e.target.offsetWidth
+        let progressMillis =
+          (e.offsetX / progressBarWidth) * players[i].audio.duration
+        players[i].audio.currentTime = progressMillis
+      }
     })
   }
 
   document.querySelectorAll('.player').forEach(player => {
-    let URL = player.getElementsByClassName('audio-control')[0].dataset.url
-    let lengthDisplay = player.getElementsByClassName('length')[0]
-    let progressDisplay = player.getElementsByClassName('progress')[0]
+    let URL = player.querySelector('.audio-control').dataset.url
+    let lengthDisplay = player.querySelector('.length')
+    init(URL, lengthDisplay)
+  })
 
+  document.querySelectorAll('.player').forEach((player, i) => {
     player.querySelectorAll('.audio-control, .status').forEach(element => {
+      let progressDisplay = player.querySelector('.progress')
       element.addEventListener('click', () => {
-        let control = document.querySelector('.audio-control')
+        let control = player.querySelector('.audio-control')
         control.classList.toggle('icon-pause')
         control.classList.toggle('icon-play')
 
-        let status = document.querySelector('.status')
+        let status = player.querySelector('.status')
         status.textContent === 'LISTEN'
           ? (status.textContent = 'PLAYING')
           : (status.textContent = 'LISTEN')
 
-        if (currentPlayer && currentPlayer.isPlaying()) {
-          currentPlayer.pause()
-        } else if (currentPlayer && !currentPlayer.isPlaying()) {
-          currentPlayer.play()
-          progressBar(progressDisplay)
-        } else {
-          setCurrent(URL, lengthDisplay, progressDisplay)
+        if (players[i] && players[i].playing) {
+          players[i].pause()
+        } else if (players[i] && !players[i].playing) {
+          players[i].play()
+          addSeeker(player, i)
+          progressBar(progressDisplay, i)
         }
       })
     })
-    init(URL, lengthDisplay, progressDisplay)
   })
 }
