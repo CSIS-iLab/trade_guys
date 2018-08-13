@@ -17,11 +17,13 @@
 
 
 
-  let scPlayer
+  let scPlayer, scTrack
 
   const init = (URL, lengthDisplay) => {
     scPlayer = new SoundCloudAudio(`{{site.soundcloud_client_id}}`)
     scPlayer.resolve(URL, function(track) {
+      scTrack = track
+      console.log(track);
       let minutes = millisToMinutesAndSeconds(track.duration)
       lengthDisplay.textContent = minutes
     })
@@ -36,9 +38,9 @@
   }
 
   const progressBar = progressDisplay => {
-    if (scPlayer.isPlaying()) {
+    if (scPlayer.playing) {
       let progress =
-        (scPlayer.currentTime() / scPlayer.getDuration()) * 100
+        scTrack.currentTime / scTrack.duration * 100
       console.log(progress)
       progressDisplay.style.width = `${progress}%`
     }
@@ -66,9 +68,9 @@
         status.textContent === 'LISTEN'
           ? (status.textContent = 'PLAYING')
           : (status.textContent = 'LISTEN')
-        if (scPlayer && scPlayer.playing()) {
+        if (scPlayer && scPlayer.playing){
           scPlayer.pause()
-        } else if (scPlayer && !scPlayer.playing()) {
+        } else if (scPlayer && !scPlayer.playing) {
           scPlayer.play()
           progressBar(progressDisplay)
         } else {
