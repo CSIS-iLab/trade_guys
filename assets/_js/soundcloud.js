@@ -20,20 +20,19 @@ export default function player() {
 
   const progressBar = (progressDisplay, i) => {
     setInterval(() => {
-      if (players[i].playing) {
-        let progressPercent =
-          (players[i].audio.currentTime / players[i].audio.duration) * 100
-        progressDisplay.style.width = `${progressPercent}%`
-      }
+      let progressPercent =
+        (players[i].audio.currentTime / players[i].audio.duration) * 100
+      progressDisplay.style.width = `${progressPercent}%`
     }, 300)
   }
 
-  const addSeeker = (player, i) => {
+  const addSeeker = (player, progressDisplay, i) => {
     player.querySelector('.progress-bar').addEventListener('click', e => {
       let progressBarWidth = player.querySelector('.progress-bar').offsetWidth
       let progressMillis =
         (e.offsetX / progressBarWidth) * players[i].audio.duration
       players[i].audio.currentTime = progressMillis
+      progressBar(progressDisplay, i)
     })
   }
 
@@ -47,7 +46,7 @@ export default function player() {
     player.querySelectorAll('.audio-control, .status').forEach(element => {
       let progressDisplay = player.querySelector('.progress')
       element.addEventListener('click', () => {
-        let control = player.querySelector('.audio-control')
+        let control = player.querySelector('.audio-control i')
         control.classList.toggle('icon-pause')
         control.classList.toggle('icon-play')
 
@@ -56,11 +55,11 @@ export default function player() {
           ? (status.textContent = 'PLAYING')
           : (status.textContent = 'LISTEN')
 
+        addSeeker(player, progressDisplay, i)
         if (players[i] && players[i].playing) {
           players[i].pause()
         } else if (players[i] && !players[i].playing) {
           players[i].play()
-          addSeeker(player, i)
           progressBar(progressDisplay, i)
         }
       })
