@@ -116,7 +116,7 @@ textarea {
 
 %labelsmall {
   font-family: $font_inconsolata;
-  @include fontSize(12px);
+  @include fontSize(16px);
   line-height: 1.31;
   letter-spacing: 1.3px;
 
