@@ -29,23 +29,21 @@ export default function player() {
   }
 
   const addSeeker = (player, i) => {
-    player.querySelector('.Rectangle-4').addEventListener('click', e => {
-      let progressBarWidth = e.target.classList.contains('Rectangle-4')
-        ? e.target.offsetWidth
-        : 501
+    player.querySelector('.progress-bar').addEventListener('click', e => {
+      let progressBarWidth = player.querySelector('.progress-bar').offsetWidth
       let progressMillis =
         (e.offsetX / progressBarWidth) * players[i].audio.duration
       players[i].audio.currentTime = progressMillis
     })
   }
 
-  document.querySelectorAll('.player').forEach(player => {
+  document.querySelectorAll('.audio-player').forEach(player => {
     let URL = player.querySelector('.audio-control').dataset.url
-    let lengthDisplay = player.querySelector('.length')
+    let lengthDisplay = player.querySelector('.duration')
     init(URL, lengthDisplay)
   })
 
-  document.querySelectorAll('.player').forEach((player, i) => {
+  document.querySelectorAll('.audio-player').forEach((player, i) => {
     player.querySelectorAll('.audio-control, .status').forEach(element => {
       let progressDisplay = player.querySelector('.progress')
       element.addEventListener('click', () => {

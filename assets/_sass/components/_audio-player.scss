@@ -1,0 +1,46 @@
+.audio-player {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .audio-control {
+    @include fontSize(20px);
+  }
+
+  .status {
+    @extend %labelsmall;
+    border: none;
+    padding: 0;
+  }
+
+  .progress-bar {
+    width: calc(100% - 185px);
+    flex-shrink: 0;
+    height: 4px;
+    position: relative;
+    background-color: #b3b3b3;
+  }
+
+  .progress-bar .progress {
+    height: 4px;
+    position: absolute;
+    background-color: black;
+  }
+
+  & > * {
+    flex-wrap: nowrap;
+  }
+
+  .duration {
+    margin: 0 0 0 20px;
+  }
+
+  .status {
+    margin: 0 20px 0 0;
+  }
+
+  i,
+  .progress-bar {
+    cursor: pointer;
+  }
+}

@@ -3,7 +3,7 @@ const babel = require('gulp-babel')
 const config = require('../frasco.config.js')
 const gulp = require('gulp')
 const named = require('vinyl-named')
-// const plumber = require('gulp-plumber')
+const plumber = require('gulp-plumber')
 const uglify = require('gulp-uglify')
 const webpackStream = require('webpack-stream')
 const webpack = require('webpack')
@@ -19,24 +19,22 @@ config.webpack.watch = argv.watch
 config.webpack.mode = argv.mode || config.webpack.mode
 
 gulp.task('webpack', function() {
-  return (
-    gulp
-      .src(entry)
-      // .pipe(plumber())
-      .pipe(named())
-      .pipe(
-        babel({
-          presets: ['env']
-        })
-      )
-      .pipe(
-        uglify().on('error', function(e) {
-          console.log(e)
-        })
-      )
-      .pipe(webpackStream(config.webpack, webpack))
-      .pipe(gulp.dest(config.assets + '/' + config.js.dest))
-  )
+  return gulp
+    .src(entry)
+    .pipe(plumber())
+    .pipe(named())
+    .pipe(
+      babel({
+        presets: ['env']
+      })
+    )
+    .pipe(
+      uglify().on('error', function(e) {
+        console.log(e)
+      })
+    )
+    .pipe(webpackStream(config.webpack, webpack))
+    .pipe(gulp.dest(config.assets + '/' + config.js.dest))
 })
 
 // For internal use only
