@@ -1,7 +1,7 @@
 import * as SoundCloudAudio from 'soundcloud-audio'
 
 export default function player() {
-  let players = []
+  let scPlayers = []
 
   const init = (URL, lengthDisplay) => {
     let scPlayer = new SoundCloudAudio('e1b9039f824fdaf6ec1fc594037c1ac7')
@@ -9,7 +9,7 @@ export default function player() {
       let minutes = millisToMinutesAndSeconds(track.duration)
       lengthDisplay.textContent = minutes
     })
-    players.push(scPlayer)
+    scPlayers.push(scPlayer)
   }
 
   const millisToMinutesAndSeconds = millis => {
@@ -21,7 +21,7 @@ export default function player() {
   const progressBar = (progressDisplay, i) => {
     setInterval(() => {
       let progressPercent =
-        (players[i].audio.currentTime / players[i].audio.duration) * 100
+        (scPlayers[i].audio.currentTime / scPlayers[i].audio.duration) * 100
       progressDisplay.style.width = `${progressPercent}%`
     }, 300)
   }
@@ -30,39 +30,45 @@ export default function player() {
     player.querySelector('.progress-bar').addEventListener('click', e => {
       let progressBarWidth = player.querySelector('.progress-bar').offsetWidth
       let progressMillis =
-        (e.offsetX / progressBarWidth) * players[i].audio.duration
-      players[i].audio.currentTime = progressMillis
+        (e.offsetX / progressBarWidth) * scPlayers[i].audio.duration
+      scPlayers[i].audio.currentTime = progressMillis
       progressBar(progressDisplay, i)
     })
   }
 
-  document.querySelectorAll('.audio-player').forEach(player => {
-    let URL = player.querySelector('.audio-control').dataset.url
-    let lengthDisplay = player.querySelector('.duration')
-    init(URL, lengthDisplay)
-  })
+  let audioPlayers = document.querySelectorAll('.audio-player')
 
-  document.querySelectorAll('.audio-player').forEach((player, i) => {
-    player.querySelectorAll('.audio-control, .status').forEach(element => {
-      let progressDisplay = player.querySelector('.progress')
-      element.addEventListener('click', () => {
-        let control = player.querySelector('.audio-control i')
-        control.classList.toggle('icon-pause')
-        control.classList.toggle('icon-play')
+  if (!audioPlayers) {
+    return
+  } else {
+    audioPlayers.forEach(player => {
+      let URL = player.querySelector('.audio-control').dataset.url
+      let lengthDisplay = player.querySelector('.duration')
+      init(URL, lengthDisplay)
+    })
 
-        let status = player.querySelector('.status')
-        status.textContent === 'LISTEN'
-          ? (status.textContent = 'PLAYING')
-          : (status.textContent = 'LISTEN')
+    audioPlayers.forEach((player, i) => {
+      player.querySelectorAll('.audio-control i, .action').forEach(element => {
+        let progressDisplay = player.querySelector('.progress')
+        element.addEventListener('click', () => {
+          let control = player.querySelector('.audio-control i')
+          control.classList.toggle('icon-pause')
+          control.classList.toggle('icon-play')
 
-        addSeeker(player, progressDisplay, i)
-        if (players[i] && players[i].playing) {
-          players[i].pause()
-        } else if (players[i] && !players[i].playing) {
-          players[i].play()
-          progressBar(progressDisplay, i)
-        }
+          let action = player.querySelector('.action')
+          action.textContent === 'listen'
+            ? (action.textContent = 'pause')
+            : (action.textContent = 'listen')
+
+          addSeeker(player, progressDisplay, i)
+          if (scPlayers[i] && scPlayers[i].playing) {
+            scPlayers[i].pause()
+          } else if (scPlayers[i] && !scPlayers[i].playing) {
+            scPlayers[i].play()
+            progressBar(progressDisplay, i)
+          }
+        })
       })
     })
-  })
+  }
 }

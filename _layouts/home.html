@@ -33,12 +33,12 @@ layout: default
   {%- endif -%}
 
 
-  <!-- {%- if site.podcast.size > 0 -%}
+  {%- if site.podcast.size > 0 -%}
       {%- for podcast in site.podcast -%}
       <span>{{podcast.title}}</span>
       {%- include audio-player.html soundcloud_url=podcast.soundcloud_url-%}
       <div>Podcast</div>
       {%- endfor -%}
-  {%- endif -%} -->
+  {%- endif -%}
 
 </div>
