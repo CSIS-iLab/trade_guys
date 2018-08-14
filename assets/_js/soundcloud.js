@@ -30,12 +30,12 @@ export default function player() {
 
   const addSeeker = (player, i) => {
     player.querySelector('.Rectangle-4').addEventListener('click', e => {
-      if (e.target.classList.contains('Rectangle-4')) {
-        let progressBarWidth = e.target.offsetWidth
-        let progressMillis =
-          (e.offsetX / progressBarWidth) * players[i].audio.duration
-        players[i].audio.currentTime = progressMillis
-      }
+      let progressBarWidth = e.target.classList.contains('Rectangle-4')
+        ? e.target.offsetWidth
+        : 501
+      let progressMillis =
+        (e.offsetX / progressBarWidth) * players[i].audio.duration
+      players[i].audio.currentTime = progressMillis
     })
   }
 
