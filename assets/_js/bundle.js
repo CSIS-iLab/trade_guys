@@ -1,3 +1,10 @@
-import PaginationInit from './pagination'
+// import PaginationInit from './pagination'
+// window.addEventListener('DOMContentLoaded', () => {
+//   PaginationInit
+//   player
+// })
 
-window.addEventListener('DOMContentLoaded', PaginationInit)
+import Player from './soundcloud'
+window.addEventListener('DOMContentLoaded', () => {
+  Player()
+})
