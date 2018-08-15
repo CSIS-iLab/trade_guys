@@ -1,5 +1,10 @@
-import PaginationInit from './pagination'
-import { player } from './soundcloud'
+// import PaginationInit from './pagination'
+// window.addEventListener('DOMContentLoaded', () => {
+//   PaginationInit
+//   player
+// })
 
-window.addEventListener('DOMContentLoaded', PaginationInit)
-let playTrack = player()
+import Player from './soundcloud'
+window.addEventListener('DOMContentLoaded', () => {
+  Player()
+})
