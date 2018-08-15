@@ -1,74 +1,74 @@
 import * as SoundCloudAudio from 'soundcloud-audio'
 
-export default function player() {
-  let scPlayers = []
+let scPlayers = []
 
-  const init = (URL, lengthDisplay) => {
-    let scPlayer = new SoundCloudAudio('e1b9039f824fdaf6ec1fc594037c1ac7')
-    scPlayer.resolve(URL, function(track) {
-      let minutes = millisToMinutesAndSeconds(track.duration)
-      lengthDisplay.textContent = minutes
-    })
-    scPlayers.push(scPlayer)
-  }
+const init = (URL, lengthDisplay) => {
+  let scPlayer = new SoundCloudAudio('e1b9039f824fdaf6ec1fc594037c1ac7')
+  scPlayer.resolve(URL, function(track) {
+    let minutes = millisToMinutesAndSeconds(track.duration)
+    lengthDisplay.textContent = minutes
+  })
+  scPlayers.push(scPlayer)
+}
 
-  const millisToMinutesAndSeconds = millis => {
-    const minutes = Math.floor(millis / 60000)
-    const seconds = ((millis % 60000) / 1000).toFixed(0)
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-  }
+const millisToMinutesAndSeconds = millis => {
+  const minutes = Math.floor(millis / 60000)
+  const seconds = ((millis % 60000) / 1000).toFixed(0)
+  return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
+}
 
-  const progressBar = (progressDisplay, i) => {
-    setInterval(() => {
-      let progressPercent =
-        (scPlayers[i].audio.currentTime / scPlayers[i].audio.duration) * 100
-      progressDisplay.style.width = `${progressPercent}%`
-    }, 300)
-  }
+const progressBar = (progressDisplay, i) => {
+  setInterval(() => {
+    let progressPercent =
+      (scPlayers[i].audio.currentTime / scPlayers[i].audio.duration) * 100
+    progressDisplay.style.width = `${progressPercent}%`
+  }, 300)
+}
 
-  const addSeeker = (player, progressDisplay, i) => {
-    player.querySelector('.progress-bar').addEventListener('click', e => {
-      let progressBarWidth = player.querySelector('.progress-bar').offsetWidth
-      let progressMillis =
-        (e.offsetX / progressBarWidth) * scPlayers[i].audio.duration
-      scPlayers[i].audio.currentTime = progressMillis
-      progressBar(progressDisplay, i)
-    })
-  }
+const addSeeker = (player, progressDisplay, i) => {
+  player.querySelector('.progress-bar').addEventListener('click', e => {
+    let progressBarWidth = player.querySelector('.progress-bar').offsetWidth
+    let progressMillis =
+      (e.offsetX / progressBarWidth) * scPlayers[i].audio.duration
+    scPlayers[i].audio.currentTime = progressMillis
+    progressBar(progressDisplay, i)
+  })
+}
 
+export default function Player() {
   let audioPlayers = document.querySelectorAll('.audio-player')
 
   if (!audioPlayers) {
     return
-  } else {
-    audioPlayers.forEach(player => {
-      let URL = player.querySelector('.audio-control').dataset.url
-      let lengthDisplay = player.querySelector('.duration')
-      init(URL, lengthDisplay)
-    })
+  }
 
-    audioPlayers.forEach((player, i) => {
-      player.querySelectorAll('.audio-control i, .action').forEach(element => {
-        let progressDisplay = player.querySelector('.progress')
-        element.addEventListener('click', () => {
-          let control = player.querySelector('.audio-control i')
-          control.classList.toggle('icon-pause')
-          control.classList.toggle('icon-play')
+  audioPlayers.forEach(player => {
+    let URL = player.querySelector('.audio-control').dataset.url
+    let lengthDisplay = player.querySelector('.duration')
+    init(URL, lengthDisplay)
+  })
 
-          let action = player.querySelector('.action')
-          action.textContent === 'listen'
-            ? (action.textContent = 'pause')
-            : (action.textContent = 'listen')
+  audioPlayers.forEach((player, i) => {
+    player.querySelectorAll('.audio-control i, .action').forEach(element => {
+      let progressDisplay = player.querySelector('.progress')
+      element.addEventListener('click', () => {
+        let control = player.querySelector('.audio-control i')
+        control.classList.toggle('icon-pause')
+        control.classList.toggle('icon-play')
 
-          addSeeker(player, progressDisplay, i)
-          if (scPlayers[i] && scPlayers[i].playing) {
-            scPlayers[i].pause()
-          } else if (scPlayers[i] && !scPlayers[i].playing) {
-            scPlayers[i].play()
-            progressBar(progressDisplay, i)
-          }
-        })
+        let action = player.querySelector('.action')
+        action.textContent === 'listen'
+          ? (action.textContent = 'pause')
+          : (action.textContent = 'listen')
+
+        addSeeker(player, progressDisplay, i)
+        if (scPlayers[i] && scPlayers[i].playing) {
+          scPlayers[i].pause()
+        } else if (scPlayers[i] && !scPlayers[i].playing) {
+          scPlayers[i].play()
+          progressBar(progressDisplay, i)
+        }
       })
     })
-  }
+  })
 }
