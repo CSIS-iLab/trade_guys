@@ -70,5 +70,6 @@ export default function Player() {
         }
       })
     })
+    init(URL, lengthDisplay, progressDisplay)
   })
 }
