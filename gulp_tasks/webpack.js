@@ -1,19 +1,19 @@
-const argv          = require('yargs').argv;
-const babel         = require('gulp-babel');
-const config        = require('../frasco.config.js')
-const gulp          = require('gulp');
-const named         = require('vinyl-named');
-const plumber       = require('gulp-plumber');
-const uglify        = require('gulp-uglify');
-const webpackStream = require('webpack-stream');
-const webpack       = require('webpack');
+const argv = require('yargs').argv
+const babel = require('gulp-babel')
+const config = require('../frasco.config.js')
+const gulp = require('gulp')
+const named = require('vinyl-named')
+// const plumber = require('gulp-plumber')
+const uglify = require('gulp-uglify')
+const webpackStream = require('webpack-stream')
+const webpack = require('webpack')
 
-const entry = [];
+const entry = []
 for (var i = 0; i <= config.js.entry.length - 1; i++) {
-  entry.push(config.assets + '/' + config.js.src + '/' + config.js.entry[i]);
+  entry.push(config.assets + '/' + config.js.src + '/' + config.js.entry[i])
 }
 
-if (config.tasks.eslint) config.webpack.module.rules.push(config.eslintLoader);
+if (config.tasks.eslint) config.webpack.module.rules.push(config.eslintLoader)
 
 config.webpack.watch = true;
 // config.webpack.watch = argv.watch;
@@ -35,7 +35,7 @@ gulp.task('webpack', function () {
 });
 
 // For internal use only
-gulp.task('_webpack', function () {
-  config.webpack.watch = config.tasks.watch;
-  gulp.start('webpack');
-});
+gulp.task('_webpack', function() {
+  config.webpack.watch = config.tasks.watch
+  gulp.start('webpack')
+})
