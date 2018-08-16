@@ -20,8 +20,10 @@
 
 				{{ content }}
 		{% endif %}
-		{% endif %}
+		{% if page.permalink == "/about/" %}
+		<p class="introduction">{{page.introduction}}</p>
 
+		{% endif %}
 
 
 	</div>
