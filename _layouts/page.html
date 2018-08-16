@@ -10,7 +10,8 @@ layout: default
 
 				<div class="show">
 					<h2>{{site.data.language.about_the_show_heading}}</h2> {{content}}
-					<p style="color:red">{{page.the_show}}</p>
+					<img src="{{page.image | relative_url}}" alt="the show">
+					<p>{{page.the_show}}</p>
 				</div>
 
 				<div class="csis-box">
@@ -35,7 +36,7 @@ layout: default
 								<div class="title">{{person.title}}</div>
 								<div class="name">{{person.name}}</div >
 							</div>
-							<p>{{person.bio}}</p>
+							<p class="person-bio">{{person.bio}}</p>
 						</div>
 						{% endfor %}
 					</div>
