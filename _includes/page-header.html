@@ -15,5 +15,11 @@
 		{% else %}
 			{{ content }}
 		{% endif %}
+		{% if page.permalink == "/about/" %}
+		<p class="introduction">{{page.introduction}}</p>
+
+		{% endif %}
+
+
 	</div>
 </header>
