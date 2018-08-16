@@ -142,7 +142,7 @@
       grid-gap: 0 calculate-rem(135px);
     }
   }
-  .csis-box p {
+  .csis-box p:last-of-type {
     margin: 0;
   }
 
