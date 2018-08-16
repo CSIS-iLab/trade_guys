@@ -1,5 +1,5 @@
 .about {
-  padding-bottom: calculate-rem(150px);
+  padding-bottom: -2rem 0 6rem;
 
   .post-content {
     padding-top: 1rem;
@@ -12,13 +12,6 @@
     }
   }
 
-  // moved introduction to page-header.html
-  // .introduction {
-  //   width: calc(60% + var(--header-footer-border-width));
-  //   @extend %page-description;
-  // }
-
-  //nitpicky
   .person-tag {
     position: relative;
     top: calculate-rem(9px);
@@ -32,15 +25,28 @@
     }
   }
 
-  h1,
+  .name {
+    @extend %h1;
+  }
+
+  .title {
+    @extend %h4;
+  }
+
+  .name,
+  .title,
   h2,
-  h4,
   h5 {
     text-transform: uppercase;
   }
 
+  .post-content > div:not(.people) h2,
+  h3 {
+    margin: 0 0 calculate-rem(10px);
+  }
+
   h5 {
-    margin: 0;
+    margin: 0 0 calculate-rem(10px);
     letter-spacing: 1.3px;
   }
 
@@ -55,14 +61,15 @@
   }
 
   .post-content > div {
-    margin-bottom: calculate-rem(100px);
+    margin-bottom: calculate-rem(90px);
   }
 
   .trade-guys {
     display: grid;
-    grid-gap: calculate-rem(100px);
+    grid-gap: calculate-rem(24px);
     @include breakpoint('medium') {
       grid-template-columns: repeat(2, minmax(35%, 1fr));
+      grid-gap: calculate-rem(84px) calculate-rem(124px);
     }
   }
 
@@ -100,13 +107,16 @@
 
   .csis-box {
     background-color: $off-white;
-    padding: calculate-rem(35px) calculate-rem(40px);
+    padding: calculate-rem(40px);
 
     @include breakpoint('medium') {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-gap: 0 6rem;
+      grid-template-columns: 1.06fr 0.94fr;
+      grid-gap: 0 calculate-rem(135px);
     }
+  }
+  .csis-box p {
+    margin: 0;
   }
 
   .csis-heading {
