@@ -41,7 +41,7 @@
     }
   }
 
-  .show p {
+  .show-description {
     @include breakpoint('medium') {
       grid-area: 2/1/2/1;
     }

@@ -11,12 +11,16 @@ layout: default
 				<div class="show">
 					<h2>{{site.data.language.about_the_show_heading}}</h2> {{content}}
 					<img src="{{page.image | relative_url}}" alt="the show">
-					<p>{{page.the_show}}</p>
+					<div class="show-description">
+						{{page.the_show | markdownify}}
+					</div>
 				</div>
 
 				<div class="csis-box">
 					<h3 class="csis-heading">{{site.data.language.about_csis_heading}}</h3>
-					<p>{{page.csis}}</p>
+					<div class="csis-description">
+						<p>{{page.csis | markdownify }}</p>
+					</div>
 					<div class="related-links">
 						<h5>{{site.data.language.about_related_links_heading}}</h5> {% for item in site.data.related_links.header %}
 						<p class="related_link {{ item.class }}">
@@ -44,7 +48,7 @@ layout: default
 
 				<div class="credits">
 					<h2>{{site.data.language.about_the_credits_heading}}</h2>
-					<p>{{page.the_credits}}</p>
+					<p>{{page.the_credits | markdownify }}</p>
 				</div>
 			</div>
 
