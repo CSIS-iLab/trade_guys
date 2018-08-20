@@ -86,8 +86,7 @@
     border-radius: calculate-rem(2px);
   }
 
-  .transcript,
-  .transcript > * {
+  .transcript {
     display: none;
     opacity: 0;
     transition: 0.2s ease-in-out;
@@ -97,8 +96,7 @@
     }
   }
 
-  .menu:hover .transcript,
-  .menu:hover .transcript > * {
+  .menu:hover .transcript {
     display: flex;
     opacity: 1;
     transition: 0.2s ease-in-out;
