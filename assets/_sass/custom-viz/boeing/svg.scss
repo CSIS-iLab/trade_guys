@@ -1,0 +1,31 @@
+/*==============================
+=              SVG             =
+==============================*/
+
+#plane {
+  position: relative;
+  width: 100vw;
+  height: 100vw;
+  left: 50%;
+  right: 50%;
+
+
+  svg {
+    position: sticky;
+    max-height: calc(70vh);
+    float: right;
+  }
+
+  @include breakpoint('medium') {
+    width: 100vw;
+    height: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right:-50vw;
+  }
+}
+
+#map {
+  background-color: 0;
+}

@@ -1,4 +1,18 @@
 /*==============================
+=         Base Styles          =
+==============================*/
+
+.scroll-text {
+  background-color: #353535;
+  padding: 2rem;
+  width: 200px;
+}
+
+.part {
+  background-color: #eae134;
+}
+
+/*==============================
 =          Animations          =
 ==============================*/
 
@@ -26,41 +40,5 @@
 @keyframes dash {
   to {
     stroke-dashoffset: 1000;
-  }
-}
-
-/*==============================
-=              SVG             =
-==============================*/
-
-#plane {
-  position: relative;
-  width: 100vw;
-  height: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right:-50vw;
-
-  svg {
-    position: sticky;
-    max-height: calc(70vh);
-    float: right;
-  }
-
-  line {
-    //just experiments
-    stroke-dasharray: 100;
-    animation: dash 5s linear infinite;
-  }
-
-  g {
-    #Labels {
-      visibility: hidden;
-    }
-  }
-
-  #cargo_access_doors_label {
-    visibility: hidden;
   }
 }
