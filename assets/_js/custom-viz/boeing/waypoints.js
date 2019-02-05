@@ -15,14 +15,16 @@ const WaypointsJS = () => {
         console.log('UP: going' + direction)
       }
       //make plane element sticky at the top of the page for mobile version
+      //on desktop, plane is sticky on the right side of the page
     }
   })
 
   let initText = new Waypoint({
     element: text,
     handler: function(direction) {
-      //for each 'scroll-text' class
-      //have to identified by specific #id bc specific actions are triggered
+      //trigger action for each text book #id
+      //when user arrives at each waypoint
+      //pieces mentioned change in opacity (with delayed trigger if multiple pieces are mentioned)
       //total text boxes: 9
       if (direction == 'down') {
         console.log('DOWN: going' + direction)
@@ -44,6 +46,8 @@ const WaypointsJS = () => {
       }
     }
   })
+
+  //bonus: hovering on piece in text triggers action on svg
 }
 
 export default WaypointsJS
