@@ -5,30 +5,31 @@ const WaypointsJS = () => {
   let wrapper = document.getElementById('scroll-wrapper')
   let text = document.getElementByClass('text-scroll')
 
-  //Pseudo-code as I start to lay this out!
+  //Everything commented out is pseudo-code.
   let initPlane = new Waypoint({
     element: wrapper,
     handler: function(direction) {
-      //below is just test code
+      //Ignore below; just test code
       if (direction == 'down') {
         console.log('DOWN: going' + direction)
       } else if (direction == 'up') {
         console.log('UP: going' + direction)
       }
-      //make plane element sticky at the top of the page for mobile version
-      //on desktop, plane is sticky on the right side of the page
+      //This handler should enable the plane element to stick at the top of the page (on mobile), and occupy the full screen (on desktop)
+      //After the scrolling visualization ends, the plane should fade out.
     }
   })
 
   let initText = new Waypoint({
     element: text,
     handler: function(direction) {
-      //each function triggers specific action for text box
-      //when user arrives at each waypoint ---> triggers change in svg
-      //pieces mentioned change in opacity (with delayed transition if multiple pieces are mentioned)
-      //total text boxes: 9
+      //Because specific functions are triggered with specific textboxes, I think it makes the most sense to have separate waypoint handlers for each text box.
+      //In other words: with the first textbox of the visualization (#s1) reaches its waypoint, this triggers the forward fuselage and forward landing gear to increase to full opacity, while the rest of the plane remains at a lower level of transparency.
+      //TLDR: When user arrives at each waypoint ---> Change in SVG is triggered
+      //Note: When there are multiple pieces mentioned in the paragraph, those pieces are emphasized in succession, with delayed transitions to mimic how the reader would view the information
+      //Total Text Boxes: 9 (So, the number of waypoint functions for the respective paragraphs should also be 9!)
 
-      //below is just test code
+      //Ignore below; just test code
       if (direction == 'down') {
         console.log('DOWN: going' + direction)
       } else if (direction == 'up') {
@@ -37,8 +38,9 @@ const WaypointsJS = () => {
     }
   })
 
-  //waypoint for map (?)
-  //triggers css animations once map is in full-view
+  //Waypoint for Map (?)
+  //Triggers full-screen map to appear on screen at the end of the scrollytelling visualization
+  //The waypoint could also trigger the CSS animations, which will likely be animated lines moving towards Everett, WA (where the 787s are manufactured) 
   let initMap = new Waypoint({
     element: text,
     handler: function(direction) {
@@ -50,7 +52,7 @@ const WaypointsJS = () => {
     }
   })
 
-  //bonus: hovering on piece in text triggers action on svg
+  //Bonus features: hovering on the specific piece in the text triggers an action on the SVG.
 }
 
 export default WaypointsJS
