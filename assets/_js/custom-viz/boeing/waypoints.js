@@ -5,10 +5,11 @@ const WaypointsJS = () => {
   let wrapper = document.getElementById('scroll-wrapper')
   let text = document.getElementByClass('text-scroll')
 
-  //pseudo-code as I start to lay this out!
+  //Pseudo-code as I start to lay this out!
   let initPlane = new Waypoint({
     element: wrapper,
     handler: function(direction) {
+      //below is just test code
       if (direction == 'down') {
         console.log('DOWN: going' + direction)
       } else if (direction == 'up') {
@@ -22,10 +23,12 @@ const WaypointsJS = () => {
   let initText = new Waypoint({
     element: text,
     handler: function(direction) {
-      //trigger action for each text book #id
-      //when user arrives at each waypoint
-      //pieces mentioned change in opacity (with delayed trigger if multiple pieces are mentioned)
+      //each function triggers specific action for text box
+      //when user arrives at each waypoint ---> triggers change in svg
+      //pieces mentioned change in opacity (with delayed transition if multiple pieces are mentioned)
       //total text boxes: 9
+
+      //below is just test code
       if (direction == 'down') {
         console.log('DOWN: going' + direction)
       } else if (direction == 'up') {
