@@ -51,7 +51,7 @@
   line {
     //just experiments
     stroke-dasharray: 100;
-    animation: dash 5s linear infinite;
+    // animation: dash 5s linear infinite;
   }
 
   g {
@@ -63,4 +63,9 @@
   #cargo_access_doors_label {
     visibility: hidden;
   }
+}
+
+#map {
+  animation: dash 5s linear infinite;
+  background-color: blue;
 }
