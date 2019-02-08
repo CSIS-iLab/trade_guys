@@ -1,0 +1,78 @@
+/*==============================
+=         Text Styles          =
+==============================*/
+
+.scroll-wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.scroll-text {
+  padding: 2rem;
+}
+
+.part {
+  background-color: #eae134;
+  margin: 0.1rem;
+}
+
+.place {
+  border: 3px dashed #eae134;
+}
+
+/*==============================
+=             SVG              =
+==============================*/
+
+#plane {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right:-50vw;
+
+  svg {
+    width: 100%;
+    position: sticky;
+    float: right;
+  }
+
+  line {
+    stroke-dasharray: 100;
+  }
+
+  #Labels {
+    display: none;
+  }
+}
+
+#map {
+  position: relative;
+  width: 100vw;
+  height: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right:-50vw;
+
+  line {
+    strke-dasharray: 100;
+    animation: dash 5s linear infinite;
+  }
+}
+
+/*==============================
+=            Effects           =
+==============================*/
+
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.sticky {
+  position: fixed;
+  position: sticky;
+  x: 0;
+  y: 0;
+}

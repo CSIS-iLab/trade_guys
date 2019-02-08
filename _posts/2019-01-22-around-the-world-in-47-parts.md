@@ -18,8 +18,7 @@ custom_viz: true
 js_files:
 - boeing/boeing
 css_files:
-- boeing/boeing
-- boeing/map
+- boeing
 published: true
 
 ---
