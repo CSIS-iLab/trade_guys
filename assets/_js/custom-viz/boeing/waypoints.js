@@ -1,40 +1,42 @@
-const Waypoint = require('waypoints/lib/noframework.waypoints.js')
+require('waypoints/lib/noframework.waypoints.js')
+require("waypoints/lib/shortcuts/sticky.js")
 
 const WaypointsJS = () => {
   console.log('testing waypoint')
-  let waypoint = new Waypoint()
 
   //Everything commented out is pseudo-code.
-  let loadScrollytelling = new Waypoint.Sticky({
+  let loadScrollytelling = new Waypoint({
     element: document.getElementById('scroll-wrapper'),
     enter: function(direction) {
       //When textbox enters viewpoint
-      document.getElementById('scroll-wrapper').addClass('full-screen')
-      console.log('scroll wrapper entered screen');
+      if (direction == 'down') {
+        document.getElementById('scroll-wrapper').addClass('full-screen')
+        console.log('scroll wrapper entered screen')
 
-      document.getElementById('plane').addClass('sticky')
-      console.log('plane is full screen');
-
+        document.getElementById('plane').addClass('sticky')
+        console.log('plane is full screen')
+      } else if (direction == 'up') {
+        console.log('up')
+      }
     },
     exit: function(direction) {
-      document.getElementById('scroll-wrapper').removeClass('full-screen')
-      console.log('scroll wrapper exits screen');
+      if (direction == 'down') {
+        document.getElementById('scroll-wrapper').removeClass('full-screen')
+        console.log('scroll wrapper exits screen')
 
-      document.getElementById('plane').removeClass('sticky')
+        document.getElementById('plane').removeClass('sticky')
+      } else if (direction == 'up') {
+        console.log('up')
+      }
     }
   })
 
   let loadText = function() {
     let firstWaypoint = document.getElementById('s1')
-
-    let waypoint1 = new Waypoint {
-      enter: function(direction) {
-        document.getElementById('s1').addClass('sticky')
-      },
-      exit: function(direction) {
-        document.getElementById('s1').addClass('sticky')
-      }
-    }
+    console.log('loadText function')
+    firstWaypoint.waypoint(function() {
+      console.log('arrived at first waypoint')
+    })
   }
 
   //Waypoint for Map (?)
@@ -50,10 +52,6 @@ const WaypointsJS = () => {
       }
     }
   })
-
-  loadScrollytelling()
-  loadText()
-  loadMap()
 }
 
 export default WaypointsJS
