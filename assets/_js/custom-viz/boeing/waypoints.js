@@ -1,32 +1,28 @@
-const Waypoint = require('waypoints/lib/noframework.waypoints.js')
-const Sticky = require('waypoints/lib/shortcuts/sticky.js')
+require('waypoints/lib/jquery.waypoints.min.js')
+const $ = require('jquery')
 
 const WaypointsJS = () => {
   console.log('testing waypoint')
 
-  //Everything commented out is pseudo-code.
-  let loadScrollytelling = new Waypoint({
+  $('#scroll-wrapper').waypoint(function(direction) {
+    if (direction == 'down') {
+      $('.scroll-wrapper').addClass('full-screen')
+      $('.plane').addClass('sticky')
+    }
+    if (direction == 'up') {
+      console.log('UP: going' + direction)
+    }
+  })
+
+  /*let loadScrollytelling = new Waypoint({
     element: document.getElementById('scroll-wrapper'),
-    enter: function(direction) {
-      //When textbox enters viewpoint
+    handler: function(direction) {
       if (direction == 'down') {
         document.getElementById('scroll-wrapper').addClass('full-screen')
         console.log('scroll wrapper entered screen')
 
         document.getElementById('plane').addClass('sticky')
         console.log('plane is full screen')
-      } else if (direction == 'up') {
-        console.log('up')
-      }
-    },
-    exit: function(direction) {
-      if (direction == 'down') {
-        document.getElementById('scroll-wrapper').removeClass('full-screen')
-        console.log('scroll wrapper exits screen')
-
-        document.getElementById('plane').removeClass('sticky')
-      } else if (direction == 'up') {
-        console.log('up')
       }
     }
   })
@@ -39,9 +35,6 @@ const WaypointsJS = () => {
     })
   }
 
-  //Waypoint for Map (?)
-  //Triggers full-screen map to appear on screen at the end of the scrollytelling visualization
-  //The waypoint could also trigger the CSS animations, which will likely be animated lines moving towards Everett, WA (where the 787s are manufactured)
   let loadMap = new Waypoint({
     element: document.getElementById('map'),
     handler: function(direction) {
@@ -52,6 +45,10 @@ const WaypointsJS = () => {
       }
     }
   })
+
+  loadScrollytelling()
+  loadText()
+  loadMap()*/
 }
 
 export default WaypointsJS

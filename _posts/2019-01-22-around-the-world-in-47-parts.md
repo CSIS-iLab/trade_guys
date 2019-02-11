@@ -17,6 +17,7 @@ featured_in_archive: false
 custom_viz: true
 js_files:
 - boeing/boeing
+- https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 css_files:
 - boeing
 published: true
