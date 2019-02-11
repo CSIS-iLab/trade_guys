@@ -1,5 +1,5 @@
-require('waypoints/lib/noframework.waypoints.js')
-require("waypoints/lib/shortcuts/sticky.js")
+const Waypoint = require('waypoints/lib/noframework.waypoints.js')
+const Sticky = require('waypoints/lib/shortcuts/sticky.js')
 
 const WaypointsJS = () => {
   console.log('testing waypoint')
