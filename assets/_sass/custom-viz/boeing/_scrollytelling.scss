@@ -1,20 +1,70 @@
-#plane-svg {
-  position: absolute;
+/*==============================
+=          Animations          =
+==============================*/
+
+@keyframes wobble {
+  33% {
+    transform: translateX(-50px);
+  }
+  to {
+    transform: translateX(50px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+/*==============================
+=            Classes           =
+==============================*/
+
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.sticky-top {
+  position: fixed;
   top: 0;
 }
 
-#map-svg {
+.sticky-bottom {
+  position: fixed;
+  bottom: 0;
+}
 
+/*==============================
+=          SVG styles          =
+==============================*/
+
+#plane-svg {
+  display: none;
+  
+  #Labels {
+    display: none;
+  }
+}
+
+#map-svg {
+  display: none;
 }
 
 #s1 {
   position: sticky;
   bottom: 0;
-  // background-color: blue;
-}
-
-#s2 {
-  position: sticky;
-  bottom: 0;
-  // background-color: blue;
 }

@@ -1,28 +1,31 @@
 import 'waypoints/lib/noframework.waypoints.min'
 
 const WaypointsJS = () => {
-  console.log('testing waypoint')
+  let scrollWrapper = document.getElementById('scroll-wrapper')
+  let scrollingText = document.getElementsByClassName('scroll-text')
 
   let loadScrollytelling = new Waypoint({
-    element: document.getElementById('scroll-wrapper'),
+    element: scrollWrapper,
     handler: function(direction) {
       if (direction == 'down') {
-        document.getElementById('scroll-wrapper').classList.add('full-screen')
-        console.log('scroll wrapper entered screen')
+        // document.getElementById('scroll-wrapper').classList.add('full-screen')
+        // console.log('scroll wrapper entered screen')
 
-        document.getElementById('plane').classList.add('sticky')
+        document.getElementById('plane-svg').classList.add('sticky')
         console.log('plane is full screen')
       }
     }
   })
 
-  let loadText = function() {
-    let firstWaypoint = document.getElementById('s1')
-    console.log('loadText function')
-    firstWaypoint.waypoint(function() {
-      console.log('arrived at first waypoint')
-    })
-  }
+  let loadText = new Waypoint({
+    element: scrollingText,
+    handler: function(direction) {
+      if (direction == 'down') {
+        document.getElementById('scroll-wrapper').classList.add('full-screen')
+        console.log('scroll wrapper entered screen')
+      }
+    }
+  })
 
   let loadMap = new Waypoint({
     element: document.getElementById('map'),
