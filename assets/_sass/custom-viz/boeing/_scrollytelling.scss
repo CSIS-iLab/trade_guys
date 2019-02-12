@@ -1,3 +1,12 @@
+#plane-svg {
+  position: absolute;
+  top: 0;
+}
+
+#map-svg {
+
+}
+
 #s1 {
   position: sticky;
   bottom: 0;
@@ -5,5 +14,7 @@
 }
 
 #s2 {
+  position: sticky;
+  bottom: 0;
   // background-color: blue;
 }

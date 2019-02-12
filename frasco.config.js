@@ -79,6 +79,13 @@ module.exports = {
     mode: 'production',
     // devtool: 'source-map',
     // plugins: [new BundleAnalyzerPlugin()],
+    plugins: [
+      // new webpack.ProvidePlugin({
+      //   $: 'jquery',
+      //   jQuery: 'jquery',
+      //   'window.jQuery': 'jquery'
+      // })
+    ],
     output: {
       filename: chunkData => {
         return chunkData.chunk.entryModule._identifier.includes('custom-viz/')
@@ -87,7 +94,7 @@ module.exports = {
       }
     },
     externals: {
-      waypoints: 'waypoints',
+      waypoints: 'waypoints'
     },
     module: {
       rules: [
@@ -97,6 +104,7 @@ module.exports = {
     resolve: {
       modules: ['node_modules'],
       alias: {
+        jquery: 'jquery',
         waypoints: 'waypoints'
       }
     }
