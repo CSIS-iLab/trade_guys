@@ -1,3 +1,8 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/noframework.waypoints.min.js" type="text/javascript"></script>
+
+
 <script src="{{ "/assets/js/bundle.js" | relative_url }}" type="text/javascript"></script>
 
 {% if page.collection == 'posts' %}
@@ -6,5 +11,6 @@
   iFrameResize( {log: false}, 'iframe.js-iframeResizeEnabled');
 </script>
 {% endif %}
+
 
 {% include footer-custom-viz.html %}
