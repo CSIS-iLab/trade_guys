@@ -13,7 +13,8 @@
 #text-wrapper {
   max-width: 100vw;
   max-height: 100vh;
-  position: relative;
+  position: sticky;
+  bottom: 0;
   overflow: scroll;
 }
 
