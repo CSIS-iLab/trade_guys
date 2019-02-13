@@ -3,6 +3,13 @@ import 'waypoints/src/shortcuts/inview'
 import 'waypoints/src/shortcuts/sticky'
 
 const WaypointsJS = () => {
+
+  /*
+    first:
+    - when waypoint 'boeing scroll' enters screen
+    - handler: plane fades to full opacity
+    - no scrolling past plane/text
+  */
   let loadScrollytelling = new Waypoint.Inview({
     element: document.getElementById('boeing-scroll'),
     enter: function(direction) {
@@ -22,6 +29,13 @@ const WaypointsJS = () => {
     offset: 20
   })
 
+  /*
+    second:
+    - when boeing plane hits top of screen (offset: 0%)
+    - handler:
+      - first label appears
+      - plane fades in opacity except for highlighted pieces (delayed timing)
+  */
   let fixScroll = new Waypoint({
     element: document.getElementById('plane-svg'),
     handler: function(direction) {
@@ -33,6 +47,10 @@ const WaypointsJS = () => {
     offset: '0%'
   })
 
+  /*
+    third:
+    - after scrolling through 'boeing-text' parent div, s1 fades out, s2 fades in
+  */
   let loadText2 = new Waypoint({
     element: document.getElementById('s2'),
     handler: function(direction) {
