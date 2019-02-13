@@ -7,7 +7,6 @@ series: []
 keywords: []
 excerpt: ''
 notes: ''
-include_header: custom-viz/boeing/viz-wrapper.html
 authors:
 - _authors/jack-caporal.md
 - _authors/jonathan-robison.md
@@ -32,4 +31,5 @@ While the completed 787 rolls off the assembly line in Everett, large portions o
 
 Where else do parts come from? Everywhere. At least nine countries and half a dozen states on four continents. Fasten your seatbelts and put your tray tables and seat back in the upright and locked position-let’s take a journey through the Boeing supply chain.
 
-{% include_relative custom-viz/boeing/scrollytelling.html %}
+{% include_relative custom-viz/boeing/intro.html %}
+{% include_relative custom-viz/boeing/viz-wrapper.html %}

@@ -3,10 +3,6 @@
 
   {%- include head.html -%}
 
-  {% if page.include_header %}
-    {% include_relative {{ page.include_header }} %}
-  {% endif %}
-
   <body class="{{ page.body_class }}">
 
     {%- include header.html -%}

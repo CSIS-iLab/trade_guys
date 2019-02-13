@@ -3,19 +3,25 @@
 ==============================*/
 
 #scroll-wrapper {
+  position: relative;
   max-width: 100vw;
   max-height: 100vh;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  // z-index: 10;
 }
 
 #text-wrapper {
-  max-width: 100vw;
-  max-height: 100vh;
+  max-height: 50%;
+  overflow: scroll;
   position: sticky;
   bottom: 0;
-  overflow: scroll;
+
+  div {
+    position: absolute;
+  }
+}
+
+.intro {
+  padding-bottom: 2rem;
 }
 
 .intro-text {
@@ -31,39 +37,27 @@
   margin: 0.1rem;
 }
 
-.place {
-  // border: 3px dashed #eae134;
-}
-
 /*==============================
 =      SVG wrappers            =
 ==============================*/
 
 #plane-wrapper,
 #map-wrapper {
-  position: relative;
   width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right:-50vw;
+  position: sticky;
+  top: 3rem;
 
   svg {
-    display: block;
+    display: inline-block;
+    top: 5%;
+    right: 5%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100vw;
+    max-width: 98vw;
+    vertical-align: middle;
   }
 }
 
 #map-wrapper {
   display: none;
-}
-
-/*==============================
-=      SVG wrappers            =
-==============================*/
-
-.scroll-wrapper {
-
 }
