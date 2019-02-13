@@ -38,9 +38,14 @@
   height: 100vh;
 }
 
+.full-opacity {
+  opacity: 1;
+  animation: dash 5s linear forwards;
+}
+
 .sticky-top {
   position: sticky;
-  top: 0;
+  top: 5;
 }
 
 .sticky-bottom {
@@ -53,27 +58,5 @@
 }
 
 .hidden {
-  display: none;
+  display: hidden;
 }
-
-/*==============================
-=          SVG styles          =
-==============================*/
-
-#plane-svg {
-  position: sticky;
-  top: 0;
-
-  #Labels {
-    display: none;
-  }
-}
-
-#map-svg {
-  display: none;
-}
-
-// #s1 {
-//   position: sticky;
-//   bottom: 0;
-// }
