@@ -6,42 +6,47 @@ const WaypointsJS = () => {
   let loadScrollytelling = new Waypoint.Inview({
     element: document.getElementById('boeing-scroll'),
     enter: function(direction) {
-      console.log('enter: ' + direction)
+      console.log('enter')
       if (direction == 'down') {
         console.log('enter-down: ' + direction)
-        // document.getElementById('boeing-scroll').classList.add('full-screen')
-        document.getElementById('plane-svg').classList.add('visible')
+        document.getElementById('plane-svg').classList.add('fade-in')
+        document.getElementById('s1').classList.add('fade-in')
         document.getElementById('s1').classList.add('visible')
+        document.getElementById('plane-svg').classList.add('fade-in')
       } else if (direction == 'up') {
-        //fade out effect
+        console.log('enter-up: ' + direction)
+        // document.getElementById('plane-svg').classList.remove('fade-in')
+        // document.getElementById('s1').classList.remove('fade-in')
       }
     },
     offset: 20
   })
 
-  let s1 = new Waypoint({
-    element: document.getElementById('s1'),
+  let fixScroll = new Waypoint({
+    element: document.getElementById('plane-svg'),
     handler: function(direction) {
-      if (direction == 'down') {
-        document.getElementById('s1').classList.remove('visible')
-        document.getElementById('s2').classList.add('visible')
-      }
-    }
+      console.log('plane is at top of window: ' + direction)
+      document.getElementById('boeing-scroll').classList.add('fixed')
+      // document.getElementById('s1').classList.remove('visible')
+      // document.getElementById('s2').classList.add('visible')
+    },
+    offset: '0%'
   })
 
-  let s2 = new Waypoint({
+  let loadText2 = new Waypoint({
     element: document.getElementById('s2'),
     handler: function(direction) {
-      if (direction == 'down') {
-        document.getElementById('s2').classList.remove('visible')
-        document.getElementById('s3').classList.add('visible')
-      }
-    }
+      console.log('s2 is on top of window: ' + direction)
+      document.getElementById('s1').classList.remove('visible')
+      document.getElementById('s2').classList.remove('visible')
+      document.getElementById('s3').classList.add('visible')
+    },
+    offset: '0%'
   })
 
   loadScrollytelling()
-  s1()
-  s2()
+  loadText()
+  loadText2()
 }
 
 export default WaypointsJS
