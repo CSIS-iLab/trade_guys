@@ -5,8 +5,7 @@ import 'waypoints/src/shortcuts/sticky'
 const Waypoints = () => {
   let wrapper = document.getElementById('boeing-scroll')
   let plane_wrapper = document.getElementById('plane-wrapper')
-  // let planeSVG = document.getElementById('plane-svg')
-  let plane_parts = document.getElementsByClassName('parts')
+  let plane_parts = document.getElementsByClassName('part-svg')
 
   let text1 = document.getElementById('s1')
   let forward_fuselage = document.getElementById('forward-fuselage')
