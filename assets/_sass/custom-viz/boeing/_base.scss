@@ -8,7 +8,7 @@
     top: 0;
     width: 100vw;
     height: 100vh;
-    // overflow: scroll;
+    overflow: scroll;
     background-color: white;
 
     @include breakpoint('medium') {
@@ -26,6 +26,7 @@
     position: sticky;
     top: 0;
     right: 10%;
+    margin-top: 5rem;
 
     @include breakpoint('medium') {
       position: absolute;
@@ -44,21 +45,21 @@
 
   &-text {
     // margin-top: 3rem;
-    position: absolute;
+    position: relative;
     overflow: hidden;
-    bottom: 0;
+    // bottom: 0;
     text-align: left;
 
     @include breakpoint('medium') {
-      position: absolute;
+      position: relative;
       margin-top: 0;
-      bottom: 0;
+      // bottom: 0;
     }
 
     @include breakpoint('large') {
       position: absolute;
-      top: 0;
-      left: 0;
+      // top: 0;
+      // left: 0;
       max-width: 300px;
     }
   }
@@ -132,9 +133,9 @@
 .scroll-text {
   position: relative;
   overflow: scroll;
-  display: none;
-  margin: 0 1rem;
-  bottom: 0;
+  // display: none;
+  margin: 8rem 5rem;
+  // top: 0;
   // border: 1px #000 solid;
 
   @include breakpoint('small') {
