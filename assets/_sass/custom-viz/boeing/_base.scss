@@ -3,15 +3,13 @@
 ==============================*/
 
 #boeing {
-
-  &-wrapper {
-    display: flex;
-  }
-
   &-scroll {
     position: relative;
+    top: 0;
     width: 100vw;
-    height: 70vh;
+    height: 100vh;
+    // overflow: scroll;
+    background-color: white;
 
     @include breakpoint('medium') {
       height: 80vh;
@@ -25,7 +23,6 @@
   }
 
   &-svg {
-    max-height: 40vh;
     position: sticky;
     top: 0;
     right: 10%;
@@ -41,9 +38,13 @@
     }
   }
 
+  &-buffer {
+
+  }
+
   &-text {
     // margin-top: 3rem;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     bottom: 0;
     text-align: left;
@@ -113,21 +114,10 @@
 ==============================*/
 
 #plane-svg {
-  position: sticky;
-  top: 0;
   z-index: 30;
-  margin-top: 2rem;
 
-  .labels {
+  .part-label {
     display: none;
-  }
-
-  #Forward_fuselage_label {
-    display: block;
-  }
-
-  @include breakpoint('small') {
-    margin-top: 0;
   }
 }
 
@@ -145,7 +135,7 @@
   display: none;
   margin: 0 1rem;
   bottom: 0;
-  border: 1px #000 solid;
+  // border: 1px #000 solid;
 
   @include breakpoint('small') {
     margin: 0 5rem;
