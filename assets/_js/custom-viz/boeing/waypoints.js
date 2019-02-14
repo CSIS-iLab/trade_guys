@@ -2,29 +2,34 @@ import 'waypoints/lib/noframework.waypoints.min'
 import 'waypoints/src/shortcuts/inview'
 import 'waypoints/src/shortcuts/sticky'
 
-const WaypointsJS = () => {
+const Waypoints = () => {
+  let wrapper = document.getElementById('boeing-scroll')
+  let planeSVG = document.getElementById('plane-svg')
+  let planeParts = document.getElementsByClassName('parts')
 
-  /*
-    first:
-    - when waypoint 'boeing scroll' enters screen
-    - handler: plane fades to full opacity
-    - no scrolling past plane/text
-  */
+  let text1 = document.getElementById('s1')
+  let forward_fuselage = document.getElementById('Forward_fuselage')
+  let forward_landing_gear = document.getElementById('Landing_gear')
+  let label1 = document.getElementById('Forward_fuselage_label')
+  let label2 = document.getElementById('Landing_Gear_label')
+
+  let text2 = document.getElementById('s2')
+  // let text3 = document.getElementById('s3')
+
   let loadScrollytelling = new Waypoint.Inview({
-    element: document.getElementById('boeing-scroll'),
+    element: wrapper,
     enter: function(direction) {
       console.log('enter')
       if (direction == 'down') {
-        console.log('enter-down: ' + direction)
-        document.getElementById('plane-svg').classList.add('fade-in')
-        document.getElementById('s1').classList.add('fade-in')
-        document.getElementById('s1').classList.add('visible')
-        document.getElementById('plane-svg').classList.add('fade-in')
+        planeSVG.classList.add('fade-in')
       } else if (direction == 'up') {
         console.log('enter-up: ' + direction)
         // document.getElementById('plane-svg').classList.remove('fade-in')
         // document.getElementById('s1').classList.remove('fade-in')
       }
+    },
+    entered: function() {
+      planeParts.classList.add('half-opacity')
     },
     offset: 20
   })
@@ -37,11 +42,19 @@ const WaypointsJS = () => {
       - plane fades in opacity except for highlighted pieces (delayed timing)
   */
   let fixScroll = new Waypoint({
-    element: document.getElementById('plane-svg'),
+    element: planeSVG,
     handler: function(direction) {
       console.log('plane is at top of window: ' + direction)
-      document.getElementById('boeing-scroll').classList.add('fixed')
-      // document.getElementById('s1').classList.remove('visible')
+      if (direction == 'down') {
+        wrapper.classList.add('fixed')
+        text1.classList.add('visible')
+        forward_fuselage.classList.add('full-opacity')
+        forward_landing_gear.classList.add('full-opacity')
+        label1.classList.add('visible')
+        label2.classList.add('visible')
+      } else {
+        text1.classList.remove('visible')
+      }
       // document.getElementById('s2').classList.add('visible')
     },
     offset: '0%'
@@ -52,19 +65,18 @@ const WaypointsJS = () => {
     - after scrolling through 'boeing-text' parent div, s1 fades out, s2 fades in
   */
   let loadText2 = new Waypoint({
-    element: document.getElementById('s2'),
+    element: text2,
     handler: function(direction) {
       console.log('s2 is on top of window: ' + direction)
-      document.getElementById('s1').classList.remove('visible')
-      document.getElementById('s2').classList.remove('visible')
-      document.getElementById('s3').classList.add('visible')
+      text1.classList.remove('visible')
+      text2.classList.add('visible')
     },
     offset: '0%'
   })
 
   loadScrollytelling()
-  loadText()
   loadText2()
+  fixScroll()
 }
 
-export default WaypointsJS
+export default Waypoints

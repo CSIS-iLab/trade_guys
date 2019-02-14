@@ -51,6 +51,15 @@
   opacity: 1;
 }
 
+.half-opacity {
+  opacity: 0.5;
+}
+
 .fade-in {
   transition: opacity 0.7s linear;
+}
+
+.fixed {
+  position: static;
+  top: 0;
 }
