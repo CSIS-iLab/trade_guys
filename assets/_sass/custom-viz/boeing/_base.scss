@@ -8,8 +8,6 @@
     top: 0;
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
-    background-color: white;
 
     @include breakpoint('medium') {
       height: 80vh;
@@ -24,9 +22,10 @@
 
   &-svg {
     position: sticky;
-    top: 0;
+    top: 10%;
     right: 10%;
-    margin-top: 5rem;
+    height: 50%;
+    z-index: 30;
 
     @include breakpoint('medium') {
       position: absolute;
@@ -39,28 +38,45 @@
     }
   }
 
-  &-buffer {
-
-  }
-
   &-text {
-    // margin-top: 3rem;
-    position: relative;
-    overflow: hidden;
-    // bottom: 0;
+    position: absolute;
+    max-height: 100%;
+    overflow: scroll;
+    bottom: 0;
     text-align: left;
 
     @include breakpoint('medium') {
-      position: relative;
+      position: absolute;
       margin-top: 0;
-      // bottom: 0;
     }
 
     @include breakpoint('large') {
       position: absolute;
-      // top: 0;
-      // left: 0;
       max-width: 300px;
+    }
+
+    .scroll-buffer::before {
+      content:''
+      width: 100%;
+      height: 100%;
+    }
+
+    .scroll-text {
+      position: relative;
+      overflow: scroll;
+      padding: 8rem 4rem;
+      z-index: 1;
+      // top: 0;
+      // border: 1px #000 solid;
+
+      @include breakpoint('small') {
+        margin: 0 5rem;
+      }
+
+      @include breakpoint('large') {
+        margin: 0;
+
+      }
     }
   }
 
@@ -92,7 +108,6 @@
 
 #plane-wrapper {
   width: 100vw;
-  top: 0;
 
   svg {
     display: inline-block;
@@ -117,8 +132,17 @@
 #plane-svg {
   z-index: 30;
 
-  .part-label {
+  line {
     display: none;
+  }
+
+  ellipse {
+    display: none;
+  }
+
+  .part-labels {
+    display: none;
+
   }
 }
 
@@ -129,21 +153,3 @@
 /*==============================
 =       Text base styles       =
 ==============================*/
-
-.scroll-text {
-  position: relative;
-  overflow: scroll;
-  // display: none;
-  margin: 8rem 5rem;
-  // top: 0;
-  // border: 1px #000 solid;
-
-  @include breakpoint('small') {
-    margin: 0 5rem;
-  }
-
-  @include breakpoint('large') {
-    margin: 0;
-
-  }
-}
