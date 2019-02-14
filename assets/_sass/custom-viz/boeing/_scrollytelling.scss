@@ -39,7 +39,7 @@
 }
 
 .visible {
-  display: inline-block;
+  display: block;
   transition: opacity 1s linear;
 }
 
@@ -47,13 +47,13 @@
   display: hidden;
 }
 
-.full-opacity {
-  opacity: 1;
+.faded {
+  opacity: 0.5;
   transition: opacity 1s linear;
 }
 
 .fade-in {
-  opacity: 0.5;
+  opacity: 1;
   transition: opacity 1s linear;
 }
 

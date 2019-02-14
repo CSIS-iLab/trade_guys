@@ -4,63 +4,76 @@ import 'waypoints/src/shortcuts/sticky'
 
 const Waypoints = () => {
   let wrapper = document.getElementById('boeing-scroll')
-  let plane_wrapper = document.getElementById('plane-wrapper')
-  let plane_parts = document.getElementsByClassName('part-svg')
+  // let plane_wrapper = document.getElementById('plane-wrapper')
+  let plane_svg = document.getElementsByClassName('part-svg')
 
+  let buffer = document.getElementById('s0')
   let text1 = document.getElementById('s1')
   let forward_fuselage = document.getElementById('forward-fuselage')
   let forward_landing_gear = document.getElementById('landing-gear')
-  let label1 = document.getElementById('forward_fuselage_label')
-  let label2 = document.getElementById('landing_gear_label')
+  let forward_fuselage_label = document.getElementById('forward_fuselage_label')
+  let forward_landing_gear_label = document.getElementById('landing_gear_label')
 
-  let text2 = document.getElementById('s2')
-  let forward_cargo_doors = document.getElementById('cargo_access_doors')
-  let label3 = document.getElementById('cargo_access_doors_label')
+  // let text2 = document.getElementById('s2')
+  // let forward_cargo_doors = document.getElementById('cargo_access_doors')
+  // let label3 = document.getElementById('cargo_access_doors_label')
+  //
+  // let text3 = document.getElementById('s3')
+  // let midForwardFuselage = document.getElementById('mid-forward_fuselage')
+  // let centerWingBox = document.getElementById('center-wing-box')
+  // let wingBodyFairings = document.getElementById('wing-body-fairing-landing-gear-doors')
+  // let label4 = document.getElementById('mid-forward-fuselage-label')
+  // let label5 = document.getElementById('center-wing-box-label')
+  // let label6 = document.getElementById('center_fuselage_label')
+  // let label7 = document.getElementById('wing-body-fairing-landing-gear-doors-label')
+  //
+  // let text4 = document.getElementById('s4')
+  // let wings = document.getElementById('wings')
+  // let engines = document.getElementById('engines')
+  // let nacelles = document.getElementById('nacelles')
+  // let label8 = document.getElementById('engines_label')
+  // let label9 = document.getElementById('nacelles_label')
 
-  let text3 = document.getElementById('s3')
-  let midForwardFuselage = document.getElementById('mid-forward_fuselage')
-  let centerWingBox = document.getElementById('center-wing-box')
-  let wingBodyFairings = document.getElementById('wing-body-fairing-landing-gear-doors')
-  let label4 = document.getElementById('mid-forward-fuselage-label')
-  let label5 = document.getElementById('center-wing-box-label')
-  let label6 = document.getElementById('center_fuselage_label')
-  let label7 = document.getElementById('wing-body-fairing-landing-gear-doors-label')
+  // fixed and moveable leading front edge//
+  // tailing edge
+  // fixed tailing edge
 
-  let text4 = document.getElementById('s4')
-  let wings = document.getElementById('wings')
-  fixed and moveable leading front edge//
-  tailing edge
-  fixed tailing edge
-
-  let text5 = document.getElementById('s5')
-  engines//nacelles
-
-  let text6 = document.getElementById('s6')
-  landing gear//wheels
-
-  let text7 = document.getElementById('s7')
+  // let text5 = document.getElementById('s5')
+  // // engines//nacelles
+  //
+  // let text6 = document.getElementById('s6')
+  // // landing gear//wheels
+  //
+  // let text7 = document.getElementById('s7')
 
   let loadScrollytelling = new Waypoint.Inview({
     element: wrapper,
     handler: function(direction) {
       console.log('inside loadScrollytelling: ' + direction)
       if (direction == 'down') {
-        plane_parts.classList.add('fade-in')
+        plane_svg.classList.add('fade-out')
       } else if (direction == 'up') {
-        plane_parts.classList.add('fade-out')
+        plane_svg.classList.add('fade-in')
       }
     },
-    offset: '50%'
+    offset: '20%'
   })
 
-  let fixScroll = new Waypoint({
-    element: plane_wrapper,
+  let initText = new Waypoint({
+    element: buffer,
     handler: function(direction) {
-      console.log('plane is at top of window: ' + direction)
+      console.log('buffer is at top of window: ' + direction)
       if (direction == 'down') {
-        plane_wrapper.classList.add('fixed')
+        plane_svg.classList.add('faded')
+        text1.classList.add('fade-in')
+        forward_fuselage.classList.add('visible')
+        forward_fuselage_label.classList.add('visible')
+        setTimeout(function() {
+          forward_landing_gear.classList.add('visible')
+          forward_landing_gear_label.classList.add('visible')
+        }, 250)
       } else if (direction == 'up') {
-        text1.classList.add('fade-out')
+        // text1.classList.remove('fade-out')
       }
     },
     offset: '0%'
@@ -68,14 +81,9 @@ const Waypoints = () => {
 
   let loadParts1 = new Waypoint({
     element: text1,
-    enabled: false,
     handler: function(direction) {
-      console.log('text1 is on top of window: ' + direction)
+      console.log('scroll1: ' + direction)
       text1.classList.add('visible')
-      label1.classList.add('visible')
-      label2.classList.add('visible')
-      forward_fuselage.classList.add('full-opacity')
-      forward_landing_gear.classList.add('full-opacity')
     },
     offset: '0%'
   })
@@ -95,7 +103,7 @@ const Waypoints = () => {
   }, 250)
 
   loadScrollytelling()
-  fixScroll()
+  initText()
 }
 
 export default Waypoints
