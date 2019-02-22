@@ -33,11 +33,6 @@
 =            Classes           =
 ==============================*/
 
-.full-screen {
-  width: 100vw;
-  height: 100vh;
-}
-
 .visible {
   display: block;
   transition: opacity 1s linear;
@@ -49,20 +44,15 @@
 
 .faded {
   opacity: 0.5;
-  transition: opacity 1s linear;
+  // transition: opacity 1s linear;
 }
 
 .fade-in {
   opacity: 1;
-  transition: opacity 1s linear;
+  // transition: opacity 1s linear;
 }
 
 .fade-out {
   opacity: 0;
   transition: opacity 1s linear;
-}
-
-.fixed {
-  position: static;
-  top: 0;
 }

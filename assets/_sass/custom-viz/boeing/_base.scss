@@ -2,102 +2,80 @@
 =         Text Styles          =
 ==============================*/
 
-#boeing {
-  &-scroll {
-    position: relative;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+#boeing-scroll {
+  position: relative;
+  width: 100vw;
 
-    @include breakpoint('medium') {
-      height: 80vh;
-      // margin-right: 4rem;
-    }
+  @include breakpoint('small') {
 
-    @include breakpoint('large') {
-      height: 100vh;
-      // margin-right: 4rem;
-    }
   }
 
-  &-svg {
+  @include breakpoint('medium') {
+    // margin-right: 4rem;
+    // right: 5%;
+  }
+
+  @include breakpoint('large') {
+    // padding-bottom: 5rem;
+    right: 5%;
+  }
+
+  .svg-container {
     position: sticky;
-    top: 10%;
-    right: 10%;
-    height: 50%;
+    top: 0;
+    width: 90vw;
+    align-items: center;
+    margin: 0 auto;
     z-index: -1;
-    background-color: $white;
 
     @include breakpoint('medium') {
-      position: absolute;
-      right: 15%;
+      width: 75vw;
     }
 
     @include breakpoint('large') {
-      position: absolute;
-      right: 4%;
     }
   }
 
-  &-text {
-    position: absolute;
-    max-height: 100%;
-    overflow: scroll;
+  .text-container {
+    position: relative;
     bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: scroll;
     text-align: left;
+    z-index: 1;
 
     @include breakpoint('medium') {
       position: absolute;
-      margin-top: 0;
+      // margin-top: 0;
     }
 
     @include breakpoint('large') {
       position: absolute;
-      max-width: 300px;
-    }
-
-    .scroll-buffer {
-      height: 50vh;
     }
 
     .scroll-text {
-      position: relative;
-      overflow: scroll;
       padding: 10rem 4rem;
-      z-index: 1;
-      // top: 0;
-      // border: 1px #000 solid;
 
-      @include breakpoint('small') {
+      @include breakpoint('medium') {
         margin: 0 5rem;
       }
 
       @include breakpoint('large') {
         margin: 0;
-
       }
     }
-  }
 
-  &-intro {
-    &-text {
-      padding: 2rem;
+    .part {
+      background-color: $yellow;
+      margin: 0.1rem;
+
+      &:hover {
+        background-color: $dark-yellow;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+      }
     }
-
-    @include breakpoint('medium') {
-      // background-color: blue;
-    }
-  }
-}
-
-.part {
-  background-color: $yellow;
-  margin: 0.1rem;
-
-  &:hover {
-    background-color: $dark-yellow;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
   }
 }
 
@@ -105,49 +83,18 @@
 =      SVG wrappers            =
 ==============================*/
 
-#plane-wrapper {
-  width: 100vw;
-
-  svg {
-    display: inline-block;
-    top: 5;
-    left: 5;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-  }
-}
-
-#map-wrapper {
-  display: none;
-}
-
-/*==============================
-=          SVG styles          =
-==============================*/
-
-#plane-svg {
-  z-index: 30;
-
-  line {
-    display: none;
-  }
-
-  ellipse {
-    display: none;
-  }
+.plane {
+  height: 100%;
 
   .part-labels {
     display: none;
   }
-
-  #forward_fuselage_label {
-    display: inline-block;
-  }
 }
 
-#map-svg {
+.map {
   display: none;
+}
+
+svg {
+  height: 100%;
 }
