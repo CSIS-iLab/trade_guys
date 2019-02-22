@@ -6,10 +6,6 @@
   position: relative;
   width: 100vw;
 
-  @include breakpoint('small') {
-
-  }
-
   @include breakpoint('medium') {
     // margin-right: 4rem;
     // right: 5%;
