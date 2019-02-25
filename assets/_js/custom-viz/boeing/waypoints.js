@@ -3,7 +3,6 @@ import 'waypoints/src/shortcuts/inview'
 import 'waypoints/src/shortcuts/sticky'
 
 const Waypoints = () => {
-  // const firstParagraph = document.getElementById('s1')
   const planeWrapper = document.querySelector('.plane')
 
   let fadeOutPlane = new Waypoint({
