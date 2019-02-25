@@ -33,26 +33,32 @@
 =            Classes           =
 ==============================*/
 
-.visible {
-  display: block;
-  transition: opacity 1s linear;
-}
 
 .hidden {
-  display: hidden;
+  display: none;
 }
 
-.faded {
+.fade-out {
   opacity: 0.5;
   // transition: opacity 1s linear;
 }
 
-.fade-in {
+.fade-in-1 {
   opacity: 1;
-  // transition: opacity 1s linear;
+  transition: opacity 1s linear;
 }
 
-.fade-out {
+.fade-in-3 {
+  opacity: 1;
+  transition: opacity 3s linear;
+}
+
+.fade-out-1 {
   opacity: 0;
   transition: opacity 1s linear;
+}
+
+.mid-fade-out-3 {
+  opacity: 0.3;
+  transition: opacity 3s linear;
 }
