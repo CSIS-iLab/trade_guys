@@ -36,11 +36,12 @@
 
 .hidden {
   display: none;
+  transition: 1s linear all;
 }
 
 .fade-out {
   opacity: 0.5;
-  // transition: opacity 1s linear;
+  transition: opacity 1s linear;
 }
 
 .fade-in-1 {
