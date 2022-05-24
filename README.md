@@ -1,6 +1,6 @@
 # Trade Guys
 
-**This repo has been archived and now redirects to the [Trade Guys Podcast](https://www.csis.org/podcasts/trade-guys) on csis.org.**
+**This repo has been archived and now advises visitors to access the [Trade Guys Podcast](https://www.csis.org/podcasts/trade-guys) on csis.org.**
 
 The Trade Guys website is the home of all things trade at CSIS, including the Trade Guys podcast, explanatory videos, analysis, and data visualizations. The site is built on top of the [Frasco](https://github.com/ixkaito/frasco/) Jekyll starter kit that utilizes gulp, Sass, Autoprefixer, PostCSS, Webpack, imagemin, & Browsersync. The sites uses [Forestry.io](https://forestry.io/) for a user-friendly CMS and [Netlify](https://www.netlify.com/) to handle deploys.
 
